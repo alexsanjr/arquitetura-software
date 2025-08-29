@@ -4,6 +4,7 @@ import { CreateAtorDto } from './dto/create-ator.dto';
 import { UpdateAtoreDto } from './dto/update-ator.dto';
 import { AtoresRepository } from './atores.repository';
 
+
 @Injectable()
 export class AtoresService {
   constructor(private readonly atoresRepository: AtoresRepository) { }
@@ -39,6 +40,7 @@ export class AtoresService {
     }
     return ator;
   }
+
 
   update(id: number, updateAtoreDto: UpdateAtoreDto) {
     if (!updateAtoreDto || typeof updateAtoreDto !== 'object') {
