@@ -1,0 +1,19 @@
+type Ator {
+  id: ID!
+  nome: String!
+  dataDeNascimento: Int!
+  nacionalidade: String!
+}
+
+type Query {
+  atores: [Ator!]!
+  ator(id: ID!): Ator
+}
+
+type Mutation {
+  criarAtor(
+    nome: String!
+    dataDeNascimento: Int!
+    nacionalidade: String!
+  ): Ator!
+}
