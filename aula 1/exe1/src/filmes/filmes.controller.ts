@@ -4,16 +4,26 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, 
 import { FilmesService } from './filmes.service';
 import { UpdateFilmeDto } from './dto/update-filme.dto';
 import { CreateFilmeDto } from './dto/create-filme.dto';
+import { HateoasHelper } from '../common/hateoas.helper';
+import type { HateoasResponse } from '../common/hateoas.helper';
 
 @Controller('filmes')
 export class FilmesController {
   constructor(private readonly filmesService: FilmesService) { }
 
   @Get()
-  findAll() {
+  findAll(): HateoasResponse<any[]> {
     try {
       const filmes = this.filmesService.findAll();
-      return filmes;
+      const filmesComLinks = filmes.map(filme => ({
+        ...filme,
+        _links: HateoasHelper.createFilmeLinks(filme.id)
+      }));
+      return {
+        statusCode: HttpStatus.OK,
+        data: filmesComLinks,
+        _links: HateoasHelper.createFilmesCollectionLinks()
+      };
     } catch (error) {
       throw new HttpException({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -23,10 +33,14 @@ export class FilmesController {
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
+  findById(@Param('id') id: string): HateoasResponse<any> {
     try {
       const filme = this.filmesService.findById(+id);
-      return filme;
+      return {
+        statusCode: HttpStatus.OK,
+        data: filme,
+        _links: HateoasHelper.createFilmeLinks(filme.id)
+      };
     } catch (error) {
       throw new HttpException({
         statusCode: HttpStatus.NOT_FOUND,
@@ -87,10 +101,18 @@ export class FilmesController {
   }
 
   @Get(':id/atores')
-  getAtoresByFilmeId(@Param('id') id: string) {
+  getAtoresByFilmeId(@Param('id') id: string): HateoasResponse<any[]> {
     try {
       const atores = this.filmesService.getAtoresByFilmeId(+id);
-      return atores;
+      const atoresComLinks = atores.map(ator => ({
+        ...ator,
+        _links: HateoasHelper.createAtorLinks(ator.id)
+      }));
+      return {
+        statusCode: HttpStatus.OK,
+        data: atoresComLinks,
+        _links: HateoasHelper.createFilmeAtoresLinks(+id)
+      };
     } catch (error) {
       throw new HttpException({
         statusCode: HttpStatus.NOT_FOUND,
@@ -103,12 +125,16 @@ export class FilmesController {
   addAtorToFilme(
     @Param('filmeId') filmeId: string,
     @Body() body: { atorId: number }
-  ) {
+  ): HateoasResponse<null> {
     try {
       this.filmesService.addAtorToFilme(+filmeId, body.atorId);
       return {
         statusCode: HttpStatus.CREATED,
-        message: 'Ator adicionado ao filme com sucesso'
+        message: 'Ator adicionado ao filme com sucesso',
+        _links: [
+          ...HateoasHelper.createFilmeLinks(+filmeId),
+          ...HateoasHelper.createFilmeAtoresLinks(+filmeId)
+        ]
       };
     } catch (error) {
       throw new HttpException({
