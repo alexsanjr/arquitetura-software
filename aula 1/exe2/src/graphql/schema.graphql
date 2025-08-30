@@ -5,9 +5,16 @@ type Ator {
   nacionalidade: String!
 }
 
+type Genero {
+  id: ID!
+  nome: String!
+}
+
 type Query {
   atores: [Ator!]!
   ator(id: ID!): Ator
+  generos: [Genero!]!
+  genero(id: ID!): Genero
 }
 
 type Mutation {
@@ -16,4 +23,5 @@ type Mutation {
     dataDeNascimento: Int!
     nacionalidade: String!
   ): Ator!
+  criarGenero(nome: String!): Genero!
 }

@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { AtorModule } from './ator/ator.module';
+import { GeneroModule } from './genero/genero.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AtorModule } from './ator/ator.module';
       },
     }),
     AtorModule,
+    GeneroModule,
   ],
   controllers: [],
   providers: [],

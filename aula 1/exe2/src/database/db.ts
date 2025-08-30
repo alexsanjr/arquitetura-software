@@ -3,56 +3,57 @@
 import { Ator } from "src/ator/ator.model";
 
 interface Filme {
-  id: number;
+  id: string;
   titulo: string;
   anoDeLancamento: number;
-  genero: Genero;
 }
 
 interface FilmeAtor {
-  filmeId: number;
-  atorId: number;
+  filmeId: string;
+  atorId: string;
 }
 
 interface Genero {
-  id: number;
+  id: string;
   nome: string;
+}
+
+interface FilmeGenero {
+  filmeId: string;
+  generoId: string;
 }
 
 export class InMemoryDatabase {
   private generos: Genero[] = [
     {
-      id: 1,
+      id: "1",
       nome: "Fantasia"
     },
     {
-      id: 2,
+      id: "2",
       nome: "Ficção Científica"
     },
     {
-      id: 3,
+      id: "3",
       nome: "Crime"
     }
   ];
 
   private filmes: Filme[] = [
     {
-      id: 1,
+      id: "1",
       titulo: "O Senhor dos Anéis: A Sociedade do Anel",
-      anoDeLancamento: 2001,
-      genero: { id: 1, nome: "Fantasia" }
+      anoDeLancamento: 2001
     },
     {
-      id: 2,
+      id: "2",
       titulo: "Matrix",
-      anoDeLancamento: 1999,
-      genero: { id: 2, nome: "Ficção Científica" }
+      anoDeLancamento: 1999
     },
     {
-      id: 3,
+      id: "3",
       titulo: "Pulp Fiction",
-      anoDeLancamento: 1994,
-      genero: { id: 3, nome: "Crime" }
+      anoDeLancamento: 1994
     }
   ];
 
@@ -78,8 +79,14 @@ export class InMemoryDatabase {
   ]
 
   private filmesAtores: FilmeAtor[] = [
-    { filmeId: 1, atorId: 1 },
-    { filmeId: 2, atorId: 2 },
-    { filmeId: 3, atorId: 3 },
+    { filmeId: "1", atorId: "1" },
+    { filmeId: "2", atorId: "2" },
+    { filmeId: "3", atorId: "3" },
+  ]
+
+  private filmeGeneros: FilmeGenero[] = [
+    { filmeId: "1", generoId: "1" },
+    { filmeId: "2", generoId: "2" },
+    { filmeId: "3", generoId: "3" }
   ]
 }
