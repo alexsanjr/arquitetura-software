@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
-
 import { Ator } from "src/ator/ator.model";
+import { Genero } from "src/genero/genero.model";
 
 interface Filme {
   id: string;
@@ -11,11 +10,6 @@ interface Filme {
 interface FilmeAtor {
   filmeId: string;
   atorId: string;
-}
-
-interface Genero {
-  id: string;
-  nome: string;
 }
 
 interface FilmeGenero {

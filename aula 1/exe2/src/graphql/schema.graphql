@@ -10,11 +10,19 @@ type Genero {
   nome: String!
 }
 
+type Filme {
+  id: ID!
+  titulo: String!
+  anoDeLancamento: Int!
+}
+
 type Query {
   atores: [Ator!]!
   ator(id: ID!): Ator
   generos: [Genero!]!
   genero(id: ID!): Genero
+  filmes: [Filme!]!
+  filme(id: ID!): Filme
 }
 
 type Mutation {
@@ -24,4 +32,5 @@ type Mutation {
     nacionalidade: String!
   ): Ator!
   criarGenero(nome: String!): Genero!
+  criarFilme(titulo: String!, anoDeLancamento: Int!): Filme!
 }

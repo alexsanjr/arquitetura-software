@@ -20,6 +20,12 @@ export class Genero {
     nome: string;
 }
 
+export class Filme {
+    id: string;
+    titulo: string;
+    anoDeLancamento: number;
+}
+
 export abstract class IQuery {
     abstract atores(): Ator[] | Promise<Ator[]>;
 
@@ -28,12 +34,18 @@ export abstract class IQuery {
     abstract generos(): Genero[] | Promise<Genero[]>;
 
     abstract genero(id: string): Nullable<Genero> | Promise<Nullable<Genero>>;
+
+    abstract filmes(): Filme[] | Promise<Filme[]>;
+
+    abstract filme(id: string): Nullable<Filme> | Promise<Nullable<Filme>>;
 }
 
 export abstract class IMutation {
     abstract criarAtor(nome: string, dataDeNascimento: number, nacionalidade: string): Ator | Promise<Ator>;
 
     abstract criarGenero(nome: string): Genero | Promise<Genero>;
+
+    abstract criarFilme(titulo: string, anoDeLancamento: number): Filme | Promise<Filme>;
 }
 
 type Nullable<T> = T | null;

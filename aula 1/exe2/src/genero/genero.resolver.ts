@@ -1,4 +1,4 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Genero } from './genero.model';
 import { GeneroService } from './genero.service';
 
@@ -18,5 +18,12 @@ export class GeneroResolver {
       throw new Error('Gênero não encontrado');
     }
     return genero;
+  }
+
+  @Mutation(() => Genero, { name: 'criarGenero' })
+  createGenero(
+    @Args('nome') nome: string
+  ): Genero {
+    return this.generoService.create({ nome });
   }
 }
