@@ -1,11 +1,6 @@
 import { Ator } from "src/ator/ator.model";
+import { Filme } from "src/filme/filme.model";
 import { Genero } from "src/genero/genero.model";
-
-interface Filme {
-  id: string;
-  titulo: string;
-  anoDeLancamento: number;
-}
 
 interface FilmeAtor {
   filmeId: string;
@@ -83,4 +78,10 @@ export class InMemoryDatabase {
     { filmeId: "2", generoId: "2" },
     { filmeId: "3", generoId: "3" }
   ]
+
+  get generosData() { return this.generos; }
+  get filmesData() { return this.filmes; }
+  get atoresData() { return this.atores; }
+  get filmesAtoresData() { return this.filmesAtores; }
+  get filmeGenerosData() { return this.filmeGeneros; }
 }

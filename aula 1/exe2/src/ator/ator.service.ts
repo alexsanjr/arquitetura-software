@@ -19,4 +19,11 @@ export class AtorService {
   create(data: { nome: string; dataDeNascimento: number; nacionalidade: string }): Ator {
     return this.dataSource.create(data);
   }
+  update(id: string, data: { nome?: string; dataDeNascimento?: number; nacionalidade?: string }): Ator | undefined {
+    return this.dataSource.update(id, data);
+  }
+
+  remove(id: string): boolean {
+    return this.dataSource.remove(id);
+  }
 }

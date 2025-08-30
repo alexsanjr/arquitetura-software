@@ -7,19 +7,19 @@ export class GeneroDataSource {
   private db = new InMemoryDatabase();
 
   findAll(): Genero[] {
-    return this.db['generos'];
+    return this.db.generosData;
   }
 
   findById(id: string): Genero | undefined {
-    return this.db['generos'].find((g: Genero) => g.id === id);
+    return this.db.generosData.find((g: Genero) => g.id === id);
   }
 
   create(data: { nome: string }): Genero {
     const newGenero: Genero = {
-      id: String(this.db['generos'].length + 1),
+      id: String(this.db.generosData.length + 1),
       nome: data.nome
     };
-    this.db['generos'].push(newGenero);
+    this.db.generosData.push(newGenero);
     return newGenero;
   }
 }

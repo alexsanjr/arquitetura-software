@@ -2,6 +2,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { AtorService } from './ator.service';
 import { Ator } from './ator.model';
+import { Filme } from 'src/filme/filme.model';
 
 @Resolver(() => Ator)
 export class AtorResolver {
@@ -30,5 +31,20 @@ export class AtorResolver {
     @Args('nacionalidade') nacionalidade: string
   ): Ator {
     return this.service.create({ nome, dataDeNascimento, nacionalidade });
+  }
+
+  @Mutation(() => Ator, { name: 'atualizarAtor' })
+  updateAtor(
+    @Args('id') id: string,
+    @Args('nome') nome: string,
+    @Args('dataDeNascimento') dataDeNascimento: number,
+    @Args('nacionalidade') nacionalidade: string
+  ): Ator | undefined {
+    return this.service.update(id, { nome, dataDeNascimento, nacionalidade });
+  }
+
+  @Mutation(() => Boolean, { name: 'removerAtor' })
+  removeAtor(@Args('id') id: string): boolean {
+    return this.service.remove(id);
   }
 }
