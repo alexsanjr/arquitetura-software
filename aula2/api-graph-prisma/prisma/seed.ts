@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  // Limpar dados existentes
+
   await prisma.ator.deleteMany({})
   await prisma.$executeRaw`ALTER SEQUENCE "Ator_id_seq" RESTART WITH 1`
 
