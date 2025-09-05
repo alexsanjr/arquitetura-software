@@ -3,10 +3,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./graphql/typeDefs.js";
 import { atorResolvers } from "./ator/resolver.js";
 import { generoResolvers } from "./genero/resolver.js";
+import { filmeResolvers } from "./filme/resolver.js";
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers: [atorResolvers, generoResolvers]
+  resolvers: [atorResolvers, generoResolvers, filmeResolvers]
 });
 
 const { url } = await startStandaloneServer(server, {

@@ -48,9 +48,9 @@ export const typeDefs = `#graphql
 
     criarGenero(nome: String!): Genero!
 
-    # criarFilme(titulo: String!, anoDeLancamento: Int!): Filme!
-    # atualizarFilme(id: ID!, titulo: String, anoDeLancamento: Int): Filme!
-    # removerFilme(id: ID!): Boolean!
+    criarFilme(titulo: String!, anoDeLancamento: Int!): Filme!
+    atualizarFilme(id: ID!, titulo: String, anoDeLancamento: Int): Filme!
+    removerFilme(id: ID!): Boolean!
     # adicionarAtoresEmFilme(filmeId: ID!, atorIds: [ID!]!): Filme!
     # removerAtorDeFilme(filmeId: ID!, atorId: ID!): Filme!
     # adicionarGenerosEmFilme(filmeId: ID!, generoIds: [ID!]!): Filme!
