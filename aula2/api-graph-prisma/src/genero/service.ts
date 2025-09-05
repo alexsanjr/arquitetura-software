@@ -4,10 +4,6 @@ interface CreateGeneroData {
   nome: string;
 }
 
-interface UpdateGeneroData {
-  nome?: string;
-}
-
 export class GeneroService {
   private datasource: GeneroDatasource;
 

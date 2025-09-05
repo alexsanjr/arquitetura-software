@@ -3,16 +3,8 @@ import { GeneroService } from "./service.js";
 interface CreateGeneroArgs {
   nome: string;
 }
-interface UpdateGeneroArgs {
-  id: string;
-  nome?: string;
-}
 
 interface GetGeneroArgs {
-  id: string;
-}
-
-interface DeleteGeneroArgs {
   id: string;
 }
 
