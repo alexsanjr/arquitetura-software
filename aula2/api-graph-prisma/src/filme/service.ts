@@ -80,4 +80,13 @@ export class FilmeService {
       throw new Error(`Erro ao deletar filme: ${error}`);
     }
   }
+
+  async addAtoresEmFilme(filmeId: number, atorIds: number[]) {
+    try {
+      await this.getFilmeById(filmeId);
+      return await this.datasource.addAtoresEmFilme(filmeId, atorIds);
+    } catch (error) {
+      throw new Error(`Erro ao adicionar atores ao filme: ${error}`);
+    }
+  }
 }

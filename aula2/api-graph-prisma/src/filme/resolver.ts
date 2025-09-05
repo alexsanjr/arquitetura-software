@@ -72,6 +72,15 @@ export const filmeResolvers = {
       } catch (error) {
         throw new Error(`Erro ao deletar filme: ${error}`);
       }
+    },
+
+    adicionarAtoresEmFilme: async (_: any, { filmeId, atorIds }: { filmeId: string; atorIds: string[] }) => {
+      try {
+        const atorIdsNum = atorIds.map(id => parseInt(id));
+        return await filmeService.addAtoresEmFilme(parseInt(filmeId), atorIdsNum);
+      } catch (error) {
+        throw new Error(`Erro ao adicionar atores ao filme: ${error}`);
+      }
     }
   }
 };

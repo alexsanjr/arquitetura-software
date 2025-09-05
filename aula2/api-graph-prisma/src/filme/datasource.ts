@@ -15,12 +15,21 @@ const prisma = new PrismaClient();
 export class FilmeDatasource {
 
   async findAll() {
-    return await prisma.filme.findMany();
+    return await prisma.filme.findMany({
+      include: {
+        atores: true,
+        generos: true
+      }
+    });
   }
 
   async findById(id: number) {
     return await prisma.filme.findUnique({
-      where: { id }
+      where: { id },
+      include: {
+        atores: true,
+        generos: true
+      }
     });
   }
 
@@ -40,6 +49,21 @@ export class FilmeDatasource {
   async delete(id: number) {
     return await prisma.filme.delete({
       where: { id }
+    });
+  }
+
+  async addAtoresEmFilme(filmeId: number, atorIds: number[]) {
+    return await prisma.filme.update({
+      where: { id: filmeId },
+      data: {
+        atores: {
+          connect: atorIds.map(atorId => ({ id: atorId }))
+        }
+      },
+      include: {
+        atores: true,
+        generos: true
+      }
     });
   }
 }
