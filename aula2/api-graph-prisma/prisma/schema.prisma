@@ -13,4 +13,19 @@ model Ator {
   nome              String  @unique
   dataDeNascimento  Int
   nacionalidade     String
+  filmes            Filme[]
+}
+
+model Filme {
+  id                      Int     @id @default(autoincrement())
+  titulo                  String  @unique
+  anoDeLancamento         Int
+  generos                 Genero[]
+  atores                  Ator[]
+}
+
+model Genero {
+  id                Int     @id @default(autoincrement())
+  nome              String  @unique
+  filmes            Filme[]
 }
