@@ -5,9 +5,23 @@ import { atorResolvers } from "./ator/resolver.js";
 import { generoResolvers } from "./genero/resolver.js";
 import { filmeResolvers } from "./filme/resolver.js";
 
+// Combinar todos os resolvers
+const resolvers = {
+  Query: {
+    ...atorResolvers.Query,
+    ...generoResolvers.Query,
+    ...filmeResolvers.Query
+  },
+  Mutation: {
+    ...atorResolvers.Mutation,
+    ...generoResolvers.Mutation,
+    ...filmeResolvers.Mutation
+  }
+};
+
 const server = new ApolloServer({
   typeDefs,
-  resolvers: [atorResolvers, generoResolvers, filmeResolvers]
+  resolvers
 });
 
 const { url } = await startStandaloneServer(server, {

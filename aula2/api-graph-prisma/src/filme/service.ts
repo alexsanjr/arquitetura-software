@@ -89,4 +89,43 @@ export class FilmeService {
       throw new Error(`Erro ao adicionar atores ao filme: ${error}`);
     }
   }
+
+  async removeAtorDeFilme(filmeId: number, atorId: number) {
+    try {
+      // Verificar se o filme existe
+      await this.getFilmeById(filmeId);
+
+      // Validar se o atorId é válido
+      if (!atorId || atorId <= 0) {
+        throw new Error("ID do ator é obrigatório e deve ser positivo");
+      }
+
+      return await this.datasource.removeAtorDeFilme(filmeId, atorId);
+    } catch (error) {
+      throw new Error(`Erro ao remover ator do filme: ${error}`);
+    }
+  }
+
+  async addGenerosEmFilme(filmeId: number, generoIds: number[]) {
+    try {
+      // Verificar se o filme existe
+      await this.getFilmeById(filmeId);
+
+      // Validar se generoIds não está vazio
+      if (!generoIds || generoIds.length === 0) {
+        throw new Error("Lista de gêneros não pode estar vazia");
+      }
+
+      // Validar se todos os IDs são válidos
+      for (const generoId of generoIds) {
+        if (!generoId || generoId <= 0) {
+          throw new Error("Todos os IDs de gênero devem ser válidos e positivos");
+        }
+      }
+
+      return await this.datasource.addGenerosEmFilme(filmeId, generoIds);
+    } catch (error) {
+      throw new Error(`Erro ao adicionar gêneros ao filme: ${error}`);
+    }
+  }
 }

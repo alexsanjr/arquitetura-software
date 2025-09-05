@@ -66,4 +66,34 @@ export class FilmeDatasource {
       }
     });
   }
+
+  async removeAtorDeFilme(filmeId: number, atorId: number) {
+    return await prisma.filme.update({
+      where: { id: filmeId },
+      data: {
+        atores: {
+          disconnect: { id: atorId }
+        }
+      },
+      include: {
+        atores: true,
+        generos: true
+      }
+    });
+  }
+
+  async addGenerosEmFilme(filmeId: number, generoIds: number[]) {
+    return await prisma.filme.update({
+      where: { id: filmeId },
+      data: {
+        generos: {
+          connect: generoIds.map(generoId => ({ id: generoId }))
+        }
+      },
+      include: {
+        atores: true,
+        generos: true
+      }
+    });
+  }
 }

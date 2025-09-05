@@ -81,6 +81,23 @@ export const filmeResolvers = {
       } catch (error) {
         throw new Error(`Erro ao adicionar atores ao filme: ${error}`);
       }
+    },
+
+    removerAtorDeFilme: async (_: any, { filmeId, atorId }: { filmeId: string; atorId: string }) => {
+      try {
+        return await filmeService.removeAtorDeFilme(parseInt(filmeId), parseInt(atorId));
+      } catch (error) {
+        throw new Error(`Erro ao remover ator do filme: ${error}`);
+      }
+    },
+
+    adicionarGenerosEmFilme: async (_: any, { filmeId, generoIds }: { filmeId: string; generoIds: string[] }) => {
+      try {
+        const generoIdsNum = generoIds.map(id => parseInt(id));
+        return await filmeService.addGenerosEmFilme(parseInt(filmeId), generoIdsNum);
+      } catch (error) {
+        throw new Error(`Erro ao adicionar gêneros ao filme: ${error}`);
+      }
     }
   }
 };

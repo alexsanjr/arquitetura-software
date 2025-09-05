@@ -52,8 +52,8 @@ export const typeDefs = `#graphql
     atualizarFilme(id: ID!, titulo: String, anoDeLancamento: Int): Filme!
     removerFilme(id: ID!): Boolean!
     adicionarAtoresEmFilme(filmeId: ID!, atorIds: [ID!]!): Filme!
-    # removerAtorDeFilme(filmeId: ID!, atorId: ID!): Filme!
-    # adicionarGenerosEmFilme(filmeId: ID!, generoIds: [ID!]!): Filme!
+    removerAtorDeFilme(filmeId: ID!, atorId: ID!): Filme!
+    adicionarGenerosEmFilme(filmeId: ID!, generoIds: [ID!]!): Filme!
 
   }
 `;
