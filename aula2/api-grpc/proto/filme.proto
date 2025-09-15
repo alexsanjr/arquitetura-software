@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package filme;
+
+service FilmeService {
+  rpc GetAllFilmes (Empty) returns (FilmesResponse);
+  rpc GetFilmeById (GetFilmeByIdRequest) returns (FilmeResponse);
+  rpc CreateFilme (CreateFilmeRequest) returns (FilmeResponse);
+  rpc UpdateFilme (UpdateFilmeRequest) returns (FilmeResponse);
+  rpc DeleteFilme (DeleteFilmeRequest) returns (DeleteFilmeResponse);
+  rpc GetAtoresDoFilme (GetAtoresDoFilmeRequest) returns (AtoresResponse);
+  rpc AddAtorToFilme (AddAtorToFilmeRequest) returns (AddAtorToFilmeResponse);
+}
+
+message Filme {
+  string id = 1;
+  string titulo = 2;
+  int32 anoDeLancamento = 3;
+}
+
+message Ator {
+  string id = 1;
+  string nome = 2;
+  int32 dataDeNascimento = 3;
+  string nacionalidade = 4;
+}
+
+message Genero {
+  string id = 1;
+  string nome = 2;
+}
+
+message Empty {}
+
+message GetFilmeByIdRequest {
+  string id = 1;
+}
+
+message GetAtoresDoFilmeRequest {
+  string filmeId = 1;
+}
+
+message CreateFilmeRequest {
+  string titulo = 1;
+  int32 anoDeLancamento = 2;
+}
+
+message UpdateFilmeRequest {
+  string id = 1;
+  optional string titulo = 2;
+  optional int32 anoDeLancamento = 3;
+}
+
+message DeleteFilmeRequest {
+  string id = 1;
+}
+
+message AddAtorToFilmeRequest {
+  string filmeId = 1;
+  string atorId = 2;
+}
+
+
+message FilmeResponse {
+  bool success = 1;
+  string message = 2;
+  optional Filme filme = 3;
+}
+
+message FilmesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Filme filmes = 3;
+  int32 total = 4;
+}
+
+message AtoresResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Ator atores = 3;
+  int32 total = 4;
+}
+
+message GenerosResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Genero generos = 3;
+  int32 total = 4;
+}
+
+message DeleteFilmeResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message AddAtorToFilmeResponse {
+  bool success = 1;
+  string message = 2;
+}

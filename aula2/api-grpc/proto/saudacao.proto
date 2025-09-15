@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package saudacao;
+
+service SaudacaoService {
+  rpc digaOla (OlaRequest) returns (OlaResponse);
+}
+
+message OlaRequest {
+  string nome = 1;
+}
+
+message OlaResponse {
+  string mensagem = 1;
+}

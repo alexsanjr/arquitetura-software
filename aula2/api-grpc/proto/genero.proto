@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package genero;
+
+service GeneroService {
+  rpc GetAllGeneros (Empty) returns (GenerosResponse);
+  rpc GetGeneroById (GetGeneroByIdRequest) returns (GeneroResponse);
+  rpc CreateGenero (CreateGeneroRequest) returns (GeneroResponse);
+  rpc UpdateGenero (UpdateGeneroRequest) returns (GeneroResponse);
+  rpc DeleteGenero (DeleteGeneroRequest) returns (DeleteGeneroResponse);
+}
+
+message Genero {
+  string id = 1;
+  string nome = 2;
+}
+
+
+message Empty {}
+
+message GetGeneroByIdRequest {
+  string id = 1;
+}
+
+message CreateGeneroRequest {
+  string nome = 1;
+}
+
+message UpdateGeneroRequest {
+  string id = 1;
+  string nome = 2;
+}
+
+message DeleteGeneroRequest {
+  string id = 1;
+}
+
+message GeneroResponse {
+  bool success = 1;
+  string message = 2;
+  optional Genero genero = 3;
+}
+
+message GenerosResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Genero generos = 3;
+  int32 total = 4;
+}
+
+message DeleteGeneroResponse {
+  bool success = 1;
+  string message = 2;
+}

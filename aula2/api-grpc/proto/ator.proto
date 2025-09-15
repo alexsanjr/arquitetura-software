@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package ator;
+
+service AtorService {
+  rpc GetAllAtores (Empty) returns (AtoresResponse);
+  rpc GetAtorById (GetAtorByIdRequest) returns (AtorResponse);
+  rpc CreateAtor (CreateAtorRequest) returns (AtorResponse);
+  rpc UpdateAtor (UpdateAtorRequest) returns (AtorResponse);
+  rpc DeleteAtor (DeleteAtorRequest) returns (DeleteAtorResponse);
+}
+
+// Mensagem para representar um ator
+message Ator {
+  string id = 1;
+  string nome = 2;
+  int32 dataDeNascimento = 3;
+  string nacionalidade = 4;
+}
+
+message Empty {}
+
+message GetAtorByIdRequest {
+  string id = 1;
+}
+
+message CreateAtorRequest {
+  string nome = 1;
+  int32 dataDeNascimento = 2;
+  string nacionalidade = 3;
+}
+
+message UpdateAtorRequest {
+  string id = 1;
+  optional string nome = 2;
+  optional int32 dataDeNascimento = 3;
+  optional string nacionalidade = 4;
+}
+
+message DeleteAtorRequest {
+  string id = 1;
+}
+
+message AtorResponse {
+  bool success = 1;
+  string message = 2;
+  optional Ator ator = 3;
+}
+
+message AtoresResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Ator atores = 3;
+  int32 total = 4;
+}
+
+message DeleteAtorResponse {
+  bool success = 1;
+  string message = 2;
+}
