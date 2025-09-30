@@ -1,9 +1,5 @@
 # 📌 Desafio Design Pattern 3 - Adapter Pattern
 
-> **Data de conclusão:** 25 de setembro de 2025 às 23:59
-
----
-
 ## 🎯 Objetivo
 
 Uma empresa recebe arquivos de produtos de fornecedores diferentes, cada um em um formato distinto. O desafio é padronizar todos os formatos para uma estrutura única utilizando o **Adapter Pattern**.
