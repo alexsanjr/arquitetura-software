@@ -1,0 +1,8 @@
+{
+  "coin": "bitcoin",
+  "buyThreshold": 25000,
+  "sellThreshold": 35000,
+  "variationPercent": 5,
+  "variationMinutes": 10,
+  "strategy": "threshold"
+}
