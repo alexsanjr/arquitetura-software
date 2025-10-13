@@ -28,5 +28,3 @@ O padrão **Strategy** foi utilizado para permitir a troca dinâmica do comporta
 
 - Cada tipo de saída de log (console, arquivo, resumo diário) é uma **estratégia diferente** que implementa a mesma interface.
 - O **contexto (`LoggerContext`)** é responsável por armazenar a estratégia atual e delegar as operações de log.
-
-Diagrama simplificado:
